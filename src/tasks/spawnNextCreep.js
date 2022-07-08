@@ -12,6 +12,6 @@ export function spawnNextCreep(spawnName) {
         const body = CREEP_TYPES[creepType].body;
         const role = CREEP_TYPES[creepType].role;
 
-        spawn.spawnCreep(body, `${creepType}${Game.time}`, {role});
+        spawn.spawnCreep(body, `${creepType}${Game.time}`, { memory: {role} });
     }
 }
