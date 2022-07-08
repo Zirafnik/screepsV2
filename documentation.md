@@ -2,6 +2,8 @@
 
 ## /constants
 
+## /helpers
+
 ## /roles
 
 ## /tasks
@@ -22,8 +24,12 @@ OPTIMIZATIONS:
 
 ### `switchNextStage()`
 OPTIMIZATIONS:
-- we are looping over object, which does not have guaranteed order of keys...
-- could be less resource intensive if we just set .stage0 = false and  .stage1 = true, when condition is met, instead of looping over options ?
+
 
 # Babel Transpiling
 - is using Babel rollup plugin to transpile new ES6+ code to Node 10.x bad for performance => would it be more performant to just write it in 10.x ?
+
+# GAME STAGES
+Stage dependent things so far are:
+- (memory reset)
+- creepType production
