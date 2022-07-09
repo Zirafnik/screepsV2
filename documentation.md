@@ -32,4 +32,10 @@ OPTIMIZATIONS:
 # GAME STAGES
 Stage dependent things so far are:
 - (memory reset)
-- creepType production
+- creepType production]
+
+
+TODO:
+- clear memory of dead creeps
+- subtract Room.memory.sources[source.id].drillersAssigned-- when a creep dies
+- add specific spawn AND behavior logic for each stage => gets more complex with each stage
