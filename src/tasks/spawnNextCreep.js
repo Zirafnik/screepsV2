@@ -1,4 +1,5 @@
 import { CREEP_TYPES } from "../constants/CREEP_TYPES";
+import { assignDrillSource } from "../utils/assignDrillSource";
 
 export function spawnNextCreep(spawnName) {
     const spawn = Game.spawns[spawnName];
@@ -12,6 +13,14 @@ export function spawnNextCreep(spawnName) {
         const body = CREEP_TYPES[creepType].body;
         const role = CREEP_TYPES[creepType].role;
 
-        spawn.spawnCreep(body, `${creepType}${Game.time}`, { memory: {role} });
+        const memory = {
+            role
+        }
+
+        if(role === 'driller') {
+            memory.assignedSource = assignDrillSource(spawn);
+        }
+
+        spawn.spawnCreep(body, `${creepType}${Game.time}`, { memory });
     }
 }

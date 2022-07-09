@@ -2,6 +2,8 @@ const { resetMemory } = require("./utils/resetMemory");
 const { switchNextStage } = require("./utils/switchNextStage");
 const { spawnNextCreep } = require("./tasks/spawnNextCreep");
 const { startOfGame } = require("./helpers/startOfGame");
+const { driller } = require("./roles/driller");
+const { cacheRoomsDrillNumbers } = require("./utils/cacheRoomsDrillNumbers");
 
 module.exports.loop = function () {
     // DETERMINE ACTIVE STAGE OF GAME
@@ -18,14 +20,24 @@ module.exports.loop = function () {
     }
     // Stage 1
     if(Memory.gameStage[1]) {
-        console.log('stage 1 check :)')
+
     }
+    
+    // Cache number of drill spots
+    cacheRoomsDrillNumbers();
 
     // Spawn creeps
     spawnNextCreep('Spawn0');
 
-    // Assign creep moves
-    for(const name in Game.creeps) {
-        const creep = Game.creeps[name];
+    // Determine creep roles
+    for(const creepName in Game.creeps) {
+        const creep = Game.creeps[creepName];
+
+        switch(creep.memory.role) {
+            case 'driller':
+                driller.run(creep);
+                break;
+        }
+
     }
 }
